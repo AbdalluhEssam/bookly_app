@@ -1,5 +1,8 @@
+import 'package:bookly_app/constants.dart';
+import 'package:bookly_app/core/utils/app_router.dart';
 import 'package:bookly_app/features/splash/presentation/views/widgets/sliding_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -15,15 +18,13 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   @override
   void initState() {
+    initSlidingAnimation();
+    Future.delayed(kTransparentDuration, () {
+      animationController
+          .reverse()
+          .then((value) => GoRouter.of(context).push(AppRouter.homeView));
+    });
     super.initState();
-    animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2),
-    );
-    slidingAnimation =
-        Tween<Offset>(begin: const Offset(0, -2), end: Offset.zero)
-            .animate(animationController);
-    animationController.forward();
   }
 
   @override
@@ -51,5 +52,16 @@ class _SplashViewBodyState extends State<SplashViewBody>
         ],
       ),
     );
+  }
+
+  void initSlidingAnimation() {
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
+    slidingAnimation =
+        Tween<Offset>(begin: const Offset(0, -5), end: Offset.zero)
+            .animate(animationController);
+    animationController.forward();
   }
 }

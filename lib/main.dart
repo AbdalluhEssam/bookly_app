@@ -1,4 +1,6 @@
 import 'package:bookly_app/constants.dart';
+import 'package:bookly_app/core/utils/app_router.dart';
+import 'package:bookly_app/features/home/presentation/views/home_view.dart';
 import 'package:bookly_app/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -16,28 +18,10 @@ class BookApp extends StatelessWidget {
         scaffoldBackgroundColor: kPrimaryColor
       ),
       debugShowCheckedModeBanner: false,
-      routerConfig: _router,
+      routerConfig: AppRouter.router,
 
     );
   }
 }
 
 
-final GoRouter _router = GoRouter(
-  routes: <RouteBase>[
-    GoRoute(
-      path: '/',
-      builder: (BuildContext context, GoRouterState state) {
-        return const SplashView();
-      },
-      // routes: <RouteBase>[
-      //   GoRoute(
-      //     path: 'details',
-      //     builder: (BuildContext context, GoRouterState state) {
-      //       return const DetailsScreen();
-      //     },
-      //   ),
-      // ],
-    ),
-  ],
-);
