@@ -24,6 +24,7 @@ class HomeViewBody extends StatelessWidget {
             "Best Seller",
             style: Styles.titleMedium,
           ),
+
         ],
       ),
     );

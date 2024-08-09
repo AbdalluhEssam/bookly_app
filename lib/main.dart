@@ -4,10 +4,12 @@ import 'package:bookly_app/features/home/presentation/views/home_view.dart';
 import 'package:bookly_app/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const BookApp());
 }
+
 class BookApp extends StatelessWidget {
   const BookApp({super.key});
 
@@ -15,13 +17,11 @@ class BookApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: kPrimaryColor
+        scaffoldBackgroundColor: kPrimaryColor,
+        textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
       ),
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
-
     );
   }
 }
-
-
