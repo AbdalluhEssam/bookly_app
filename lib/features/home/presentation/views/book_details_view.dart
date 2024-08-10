@@ -10,15 +10,7 @@ class BookDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // leadingWidth: 0,
-        // titleSpacing: 30,
         automaticallyImplyLeading: false,
-        // leading: IconButton(
-        //   onPressed: () {
-        //     Navigator.pop(context);
-        //   },
-        //   icon: const Icon(Icons.close),
-        // ),
         backgroundColor: kPrimaryColor,
         title: IconButton(
             onPressed: () {
@@ -31,6 +23,7 @@ class BookDetailsView extends StatelessWidget {
         ],
       ),
       body: const SafeArea(child: BookDetailsViewBody()),
+
     );
   }
 }
