@@ -23,9 +23,9 @@ class BookDetailsViewBody extends StatelessWidget {
             "The Jungle Book",
             style: Styles.textStyle30,
           ),
-          const SizedBox(
-            height: 6,
-          ),
+          // const SizedBox(
+          //   height: 0,
+          // ),
           Opacity(
             opacity: 0.7,
             child: Text(
@@ -35,7 +35,7 @@ class BookDetailsViewBody extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 16,
+            height: 18,
           ),
           const BookRatting()
         ],
