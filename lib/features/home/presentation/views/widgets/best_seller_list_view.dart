@@ -9,7 +9,7 @@ class FeaturedBastSellerListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
         physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) => const BestSellerListViewItem(),
+        itemBuilder: (context, index) => const BestListViewItem(),
         separatorBuilder: (context, index) => const SizedBox(
               height: 20,
             ),
