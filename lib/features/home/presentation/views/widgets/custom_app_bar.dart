@@ -13,7 +13,9 @@ class CustomApBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-          vertical: 40, horizontal: Styles.defaultPadding),
+        vertical: 20,
+        horizontal: Styles.defaultPadding,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
