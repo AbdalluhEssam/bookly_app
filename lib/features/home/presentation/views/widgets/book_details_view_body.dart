@@ -1,9 +1,10 @@
-import 'package:bookly_app/constants.dart';
 import 'package:bookly_app/core/utils/styles.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/best_seller_list_view_item.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'button_action.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
   const BookDetailsViewBody({super.key});
@@ -37,7 +38,11 @@ class BookDetailsViewBody extends StatelessWidget {
           const SizedBox(
             height: 18,
           ),
-          const BookRatting()
+          const BookRatting(),
+          const SizedBox(
+            height: 36,
+          ),
+          const ButtonAction()
         ],
       ),
     );
