@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'core/utils/service_locator.dart';
 
 void main() {
-  setup();
+  setupServiceLocator();
   runApp(const BookApp());
 }
 
