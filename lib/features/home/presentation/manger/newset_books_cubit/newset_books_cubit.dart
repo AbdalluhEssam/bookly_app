@@ -1,10 +1,20 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/book_model.dart';
+import '../../../data/repos/home_repo.dart';
 
 part 'newset_books_state.dart';
 
 class NewSetBooksCubit extends Cubit<NewSetBooksState> {
-  NewSetBooksCubit() : super(NewSetBooksInitial());
+  NewSetBooksCubit(this.homeRepo) : super(NewSetBooksInitial());
+
+  final HomeRepo homeRepo;
+
+  Future<void> fetchFeaturedBooks() async {
+    emit(NewSetBooksLoading());
+    var result = await homeRepo.fetchFeaturedBooks();
+    result.fold(
+        (failure) => emit(NewSetBooksFailure(errMessage: failure.errMessage)),
+        (books) => emit(NewSetBooksSuccess(books: books)));
+  }
 }

@@ -1,6 +1,5 @@
 part of 'newset_books_cubit.dart';
 
-@immutable
 sealed class NewSetBooksState {}
 
 final class NewSetBooksInitial extends NewSetBooksState {}
