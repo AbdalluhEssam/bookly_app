@@ -23,12 +23,12 @@ class BookApp extends StatelessWidget {
           BlocProvider(
             create: (context) => FeaturedBooksCubit(
               getIt.get<HomeRepoImpl>(),
-            ),
+            )..fetchFeaturedBooks(),
           ),
           BlocProvider(
             create: (context) => NewSetBooksCubit(
               getIt.get<HomeRepoImpl>(),
-            ),
+            )..fetchNewSetBooks(),
           ),
         ],
         child: MaterialApp.router(
