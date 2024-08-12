@@ -33,7 +33,7 @@ class BoolDetailsSection extends StatelessWidget {
         const SizedBox(
           height: 18,
         ),
-        const BookRatting(),
+        // const BookRatting(),
         const SizedBox(
           height: 36,
         ),

@@ -70,6 +70,8 @@ class VolumeInfo {
   String? maturityRating;
   bool? allowAnonLogging;
   String? contentVersion;
+  String? ratingsCount;
+  String? averageRating;
   PanelizationSummary? panelizationSummary;
   ImageLinks imageLinks;
   String? language;
@@ -96,35 +98,39 @@ class VolumeInfo {
       this.language,
       this.previewLink,
       this.infoLink,
+      this.ratingsCount,
+      this.averageRating,
       this.canonicalVolumeLink});
 
- factory VolumeInfo.fromJson(Map<String, dynamic> json) {
+  factory VolumeInfo.fromJson(Map<String, dynamic> json) {
     return VolumeInfo(
-        title : json['title'],
-        authors : json['authors'].cast<String>(),
-    publisher : json['publisher'],
-    publishedDate : json['publishedDate'],
-    description : json['description'],
-    imageLinks : ImageLinks.fromJson(json['imageLinks']),
-
-    industryIdentifiers : json['industryIdentifiers']?.map<IndustryIdentifiers>((e) => IndustryIdentifiers.fromJson(e))
-            .toList(),
-    readingModes : json['readingModes'] != null
-        ? ReadingModes.fromJson(json['readingModes'])
-        : null,
-    pageCount : json['pageCount'],
-    printType : json['printType'],
-    categories : json['categories'].cast<String>(),
-    maturityRating : json['maturityRating'],
-    allowAnonLogging : json['allowAnonLogging'],
-    contentVersion : json['contentVersion'],
-    panelizationSummary : json['panelizationSummary'] != null
-        ? PanelizationSummary.fromJson(json['panelizationSummary'])
-        : null,
-    language : json['language'],
-    previewLink : json['previewLink'],
-    infoLink : json['infoLink'],
-    canonicalVolumeLink : json['canonicalVolumeLink'],
+      title: json['title'],
+      authors: json['authors'].cast<String>(),
+      publisher: json['publisher'],
+      publishedDate: json['publishedDate'],
+      description: json['description'],
+      imageLinks: ImageLinks.fromJson(json['imageLinks']),
+      industryIdentifiers: json['industryIdentifiers']
+          ?.map<IndustryIdentifiers>((e) => IndustryIdentifiers.fromJson(e))
+          .toList(),
+      readingModes: json['readingModes'] != null
+          ? ReadingModes.fromJson(json['readingModes'])
+          : null,
+      pageCount: json['pageCount'],
+      printType: json['printType'],
+      categories: json['categories'].cast<String>(),
+      maturityRating: json['maturityRating'],
+      allowAnonLogging: json['allowAnonLogging'],
+      contentVersion: json['contentVersion'],
+      panelizationSummary: json['panelizationSummary'] != null
+          ? PanelizationSummary.fromJson(json['panelizationSummary'])
+          : null,
+      language: json['language'],
+      previewLink: json['previewLink'],
+      infoLink: json['infoLink'],
+      canonicalVolumeLink: json['canonicalVolumeLink'],
+      ratingsCount: json['ratingsCount'].toString(),
+      averageRating: json['averageRating'].toString(),
     );
   }
 
@@ -152,10 +158,13 @@ class VolumeInfo {
       data['panelizationSummary'] = panelizationSummary!.toJson();
     }
     data['imageLinks'] = imageLinks.toJson();
-      data['language'] = language;
+    data['language'] = language;
     data['previewLink'] = previewLink;
     data['infoLink'] = infoLink;
     data['canonicalVolumeLink'] = canonicalVolumeLink;
+    data['ratingsCount'] = ratingsCount;
+    data['averageRating'] = averageRating;
+
     return data;
   }
 }
@@ -221,13 +230,13 @@ class ImageLinks {
   String smallThumbnail;
   String thumbnail;
 
-  ImageLinks({required this.smallThumbnail,required this.thumbnail});
+  ImageLinks({required this.smallThumbnail, required this.thumbnail});
 
   factory ImageLinks.fromJson(Map<String, dynamic> json) {
-   return ImageLinks(
-     smallThumbnail : json['smallThumbnail'],
-     thumbnail : json['thumbnail'],
-   );
+    return ImageLinks(
+      smallThumbnail: json['smallThumbnail'],
+      thumbnail: json['thumbnail'],
+    );
   }
 
   Map<String, dynamic> toJson() {

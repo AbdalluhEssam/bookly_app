@@ -1,14 +1,17 @@
 import 'package:bookly_app/core/utils/app_router.dart';
+import 'package:bookly_app/features/home/data/models/book_model.dart';
+import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_item.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../../constants.dart';
-import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/styles.dart';
 
 class BestListViewItem extends StatelessWidget {
-  const BestListViewItem({super.key});
+  const BestListViewItem({super.key, required this.bookModel});
+
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -19,20 +22,7 @@ class BestListViewItem extends StatelessWidget {
       child: SizedBox(
         height: 150,
         child: Row(children: [
-          AspectRatio(
-            aspectRatio: 2 / 3,
-            child: Container(
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                image: const DecorationImage(
-                  image: AssetImage(AssetsApp.bookImage),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.circular(16),
-              ),
-            ),
-          ),
+          CustomBookImage(bookImage: bookModel.volumeInfo.imageLinks.thumbnail),
           const SizedBox(
             width: 30,
           ),
@@ -41,7 +31,7 @@ class BestListViewItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Harry Potter and the Goblet of Fire",
+                  bookModel.volumeInfo.title ??"",
                   style: Styles.textStyle20.copyWith(
                     fontFamily: kGtSectraFine,
                   ),
@@ -51,18 +41,18 @@ class BestListViewItem extends StatelessWidget {
                 const SizedBox(
                   height: 3,
                 ),
-                const Text(
-                  "J.K. Rowling",
+                 Text(
+                  bookModel.volumeInfo.authors?.first??'',
                   style: Styles.textStyle14,
                 ),
                 const SizedBox(
                   height: 8,
                 ),
-                const Row(
+                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("19.99 €", style: Styles.textStyle20),
-                    BookRatting(),
+                    const Text("Free", style: Styles.textStyle20),
+                    BookRatting(bookModel: bookModel,),
                   ],
                 )
               ],
@@ -76,8 +66,9 @@ class BestListViewItem extends StatelessWidget {
 
 class BookRatting extends StatelessWidget {
   const BookRatting({
-    super.key,
+    super.key, required this.bookModel,
   });
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +83,7 @@ class BookRatting extends StatelessWidget {
         const SizedBox(
           width: 8,
         ),
-        Text("4.9",
+        Text((bookModel.volumeInfo.averageRating == "null" ? "0.0" : bookModel.volumeInfo.averageRating ).toString(),
             style: Styles.textStyle16
                 .copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
         const SizedBox(
@@ -101,7 +92,7 @@ class BookRatting extends StatelessWidget {
         Opacity(
           opacity: 0.5,
           child: Text(
-            "(2390)",
+            "(${bookModel.volumeInfo.ratingsCount == "null" ? "0" : bookModel.volumeInfo.ratingsCount })",
             style: Styles.textStyle14.copyWith(fontWeight: FontWeight.w600),
           ),
         ),

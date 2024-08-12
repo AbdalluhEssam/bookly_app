@@ -16,7 +16,7 @@ class HomeViewBody extends StatelessWidget {
       slivers: [
         SliverToBoxAdapter(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomApBar(),
               FeaturedBooksListView(),
@@ -27,7 +27,7 @@ class HomeViewBody extends StatelessWidget {
                   padding:
                       EdgeInsets.symmetric(horizontal: Styles.defaultPadding),
                   child: Text(
-                    "Best Seller",
+                    "Newset Books",
                     style: Styles.textStyle18,
                   )),
               SizedBox(
@@ -36,7 +36,7 @@ class HomeViewBody extends StatelessWidget {
             ],
           ),
         ),
-        SliverFillRemaining(
+        SliverToBoxAdapter(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: Styles.defaultPadding),
             child: FeaturedBastSellerListView(),
@@ -46,4 +46,3 @@ class HomeViewBody extends StatelessWidget {
     );
   }
 }
-

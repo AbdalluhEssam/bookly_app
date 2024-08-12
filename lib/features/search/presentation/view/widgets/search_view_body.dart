@@ -36,12 +36,15 @@ class SearchResultListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-        physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) => const BestListViewItem(),
-        separatorBuilder: (context, index) => const SizedBox(
-              height: 20,
-            ),
-        itemCount: 10);
+    return Container();
+
+
+      // ListView.separated(
+      //   physics: const BouncingScrollPhysics(),
+      //   itemBuilder: (context, index) => const BestListViewItem(),
+      //   separatorBuilder: (context, index) => const SizedBox(
+      //         height: 20,
+      //       ),
+      //   itemCount: 10);
   }
 }
