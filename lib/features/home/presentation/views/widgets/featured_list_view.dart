@@ -21,7 +21,11 @@ class FeaturedBooksListView extends StatelessWidget {
                 clipBehavior: Clip.none,
                 padding: const EdgeInsetsDirectional.only(
                     start: Styles.defaultPadding),
-                itemBuilder: (context, index) =>  CustomBookImage(bookImage: state.books[index].volumeInfo.imageLinks.thumbnail,),
+                itemBuilder: (context, index) => CustomBookImage(
+                      bookImage:
+                          state.books[index].volumeInfo.imageLinks?.thumbnail ??
+                              "",
+                    ),
                 separatorBuilder: (context, index) => const SizedBox(
                       width: 12,
                     ),
@@ -31,7 +35,7 @@ class FeaturedBooksListView extends StatelessWidget {
           return Center(
             child: CustomErrorWidget(error: state.errMessage),
           );
-        }else {
+        } else {
           return const CustomLoadingIndicator();
         }
       },

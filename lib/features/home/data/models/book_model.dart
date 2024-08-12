@@ -73,7 +73,7 @@ class VolumeInfo {
   String? ratingsCount;
   String? averageRating;
   PanelizationSummary? panelizationSummary;
-  ImageLinks imageLinks;
+  ImageLinks? imageLinks;
   String? language;
   String? previewLink;
   String? infoLink;
@@ -109,7 +109,7 @@ class VolumeInfo {
       publisher: json['publisher'],
       publishedDate: json['publishedDate'],
       description: json['description'],
-      imageLinks: ImageLinks.fromJson(json['imageLinks']),
+      imageLinks:json['imageLinks'] == null?null: ImageLinks.fromJson(json['imageLinks']),
       industryIdentifiers: json['industryIdentifiers']
           ?.map<IndustryIdentifiers>((e) => IndustryIdentifiers.fromJson(e))
           .toList(),
@@ -157,7 +157,7 @@ class VolumeInfo {
     if (panelizationSummary != null) {
       data['panelizationSummary'] = panelizationSummary!.toJson();
     }
-    data['imageLinks'] = imageLinks.toJson();
+    data['imageLinks'] = imageLinks?.toJson();
     data['language'] = language;
     data['previewLink'] = previewLink;
     data['infoLink'] = infoLink;
