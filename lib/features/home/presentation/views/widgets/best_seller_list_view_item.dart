@@ -16,12 +16,13 @@ class BestListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.bookDetailsView);
+        GoRouter.of(context).push(AppRouter.bookDetailsView, extra: bookModel);
       },
       child: SizedBox(
         height: 150,
         child: Row(children: [
           CustomBookImage(
+
               bookImage: bookModel.volumeInfo.imageLinks?.thumbnail ?? ""),
           const SizedBox(
             width: 30,
