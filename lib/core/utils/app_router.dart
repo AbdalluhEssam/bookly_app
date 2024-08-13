@@ -18,6 +18,7 @@ abstract class AppRouter {
   static const String searchView = '/searchView';
 
   static GoRouter router = GoRouter(
+    // redirect: (context, state) => null,
     routes: <RouteBase>[
       GoRoute(
         path: splashView,
