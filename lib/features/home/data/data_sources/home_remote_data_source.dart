@@ -1,3 +1,6 @@
+import 'package:bookly_app/core/utils/api_service.dart';
+import 'package:bookly_app/features/home/data/models/book_model.dart';
+
 import '../../domain/entities/book_entity.dart';
 
 abstract class HomeRemoteDataSource {
@@ -7,14 +10,28 @@ abstract class HomeRemoteDataSource {
 }
 
 class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
+  ApiService apiService;
+
+  HomeRemoteDataSourceImpl({required this.apiService});
+
   @override
-  Future<List<BookEntity>> fetchFeaturedBooks() {
-    // TODO: implement fetchFeaturedBooks
-    throw UnimplementedError();
+  Future<List<BookEntity>> fetchFeaturedBooks() async {
+    var data = await apiService.get(endPoint: "volumes?q=subject:programming&Filtering=free-ebooks");
+
+    List<BookEntity> books = getBookList(data);
+    return books;
+  }
+
+  List<BookEntity> getBookList(Map<String, dynamic> data) {
+     List<BookEntity> books = [];
+    for (var item in data['items']) {
+      books.add(BookModel.fromJson(item));
+    }
+    return books;
   }
 
   @override
-  Future<List<BookEntity>> fetchNewestBooks() {
+  Future<List<BookEntity>> fetchNewestBooks() async{
     // TODO: implement fetchNewestBooks
     throw UnimplementedError();
   }
