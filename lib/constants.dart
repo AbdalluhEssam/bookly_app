@@ -7,4 +7,4 @@ const kTransparentDuration = Duration(seconds: 3);
 const kGtSectraFine = 'GTSectra';
 
 const kFeaturedBooks = 'featured_box';
-const kNewestBooks = 'Newest Books';
+const kNewestBooks = 'newest_books';
