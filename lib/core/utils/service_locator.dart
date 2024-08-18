@@ -8,11 +8,14 @@ import 'api_service.dart';
 final getIt = GetIt.instance;
 
 void setupServiceLocator() {
+  // Register a single instance of ApiService
   getIt.registerSingleton<ApiService>(ApiService(Dio()));
 
+  // Use the same instance of ApiService for HomeRemoteDataSourceImpl
   getIt.registerSingleton<HomeRepoImpl>(
-      HomeRepoImpl(
-          homeRemoteDataSource:
-              HomeRemoteDataSourceImpl(apiService: ApiService(Dio())),
-          homeLocalDataSource: HomeLocalDataSourceImpl()));
+    HomeRepoImpl(
+      homeRemoteDataSource: HomeRemoteDataSourceImpl(apiService: getIt<ApiService>()),
+      homeLocalDataSource: HomeLocalDataSourceImpl(),
+    ),
+  );
 }

@@ -1,4 +1,5 @@
 import 'package:bookly_app/features/home/data/models/book_model.dart';
+import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_item.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/utils/styles.dart';
@@ -8,7 +9,7 @@ import 'button_action.dart';
 class BoolDetailsSection extends StatelessWidget {
   const BoolDetailsSection({super.key, required this.bookModel});
 
-  final BookModel bookModel;
+  final BookEntity bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -20,17 +21,17 @@ class BoolDetailsSection extends StatelessWidget {
             padding:
                 EdgeInsets.symmetric(horizontal: width * 0.2, vertical: 35),
             child: CustomBookImage(
-              bookImage: bookModel.volumeInfo.imageLinks?.thumbnail ?? "",
+              bookImage: bookModel.image ?? "",
             )),
         Text(
-          bookModel.volumeInfo.title ?? "",
+          bookModel.title ?? "",
           style: Styles.textStyle30,
           textAlign: TextAlign.center,
         ),
         Opacity(
           opacity: 0.7,
           child: Text(
-            bookModel.volumeInfo.authors?[0] ?? "",
+            bookModel.authorName ?? "",
             style: Styles.textStyle18.copyWith(
                 fontStyle: FontStyle.italic, fontWeight: FontWeight.w500),
           ),

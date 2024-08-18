@@ -7,6 +7,7 @@ abstract class HomeLocalDataSource {
   List<BookEntity> fetchFeaturedBooks();
 
   List<BookEntity> fetchNewestBooks();
+  List<BookEntity> fetchSimilarBooks();
 }
 
 class HomeLocalDataSourceImpl extends HomeLocalDataSource {
@@ -19,6 +20,12 @@ class HomeLocalDataSourceImpl extends HomeLocalDataSource {
   @override
   List<BookEntity> fetchNewestBooks() {
     var box = Hive.box<BookEntity>(kNewestBooks);
+    return box.values.toList();
+  }
+
+  @override
+  List<BookEntity> fetchSimilarBooks() {
+    var box = Hive.box<BookEntity>(kSimilarBooks);
     return box.values.toList();
   }
 }

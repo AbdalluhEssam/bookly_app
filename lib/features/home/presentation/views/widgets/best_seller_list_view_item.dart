@@ -55,9 +55,9 @@ class BestListViewItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text("Free", style: Styles.textStyle20),
-                    BookRatting(
-                      bookModel: bookModel,
-                    ),
+                    // BookRatting(
+                    //   bookModel: bookModel,
+                    // ),
                   ],
                 )
               ],
@@ -91,7 +91,7 @@ class BookRatting extends StatelessWidget {
           width: 8,
         ),
         Text(
-            (bookModel.rating == "null"
+            (bookModel.rating.toString() == "null"
                     ? "0.0"
                     : bookModel.rating)
                 .toString(),

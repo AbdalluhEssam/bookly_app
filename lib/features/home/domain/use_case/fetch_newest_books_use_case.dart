@@ -7,10 +7,10 @@ import '../repos/home_reop.dart';
 class FetchNewestBooksUseCase extends UseCase<List<BookEntity>, NoParams> {
   final HomeRepo homeRepo;
 
-  FetchNewestBooksUseCase(this.homeRepo);
+  FetchNewestBooksUseCase({required this.homeRepo});
 
   @override
   Future<Either<Failure, List<BookEntity>>> call([NoParams? params]) async {
-    return homeRepo.fetchNewestBooks();
+    return await homeRepo.fetchNewestBooks();
   }
 }

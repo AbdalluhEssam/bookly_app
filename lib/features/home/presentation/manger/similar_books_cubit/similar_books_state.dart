@@ -13,7 +13,7 @@ final class SimilarBooksFailure extends SimilarBooksState {
 }
 
 final class SimilarBooksSuccess extends SimilarBooksState {
-  List<BookModel> books;
+  List<BookEntity> books;
 
   SimilarBooksSuccess(this.books);
 }

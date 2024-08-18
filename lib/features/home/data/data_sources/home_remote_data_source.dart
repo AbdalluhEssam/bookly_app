@@ -1,13 +1,14 @@
 import 'package:bookly_app/constants.dart';
 import 'package:bookly_app/core/utils/api_service.dart';
 import 'package:bookly_app/core/utils/function/save_books.dart';
-import 'package:bookly_app/features/home/data/models/book_model.dart';
 import '../../domain/entities/book_entity.dart';
+import '../models/book_model.dart';
 
 abstract class HomeRemoteDataSource {
   Future<List<BookEntity>> fetchFeaturedBooks();
 
   Future<List<BookEntity>> fetchNewestBooks();
+  Future<List<BookEntity>> fetchSimilarBooks({required String category});
 }
 
 class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
@@ -18,9 +19,10 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   @override
   Future<List<BookEntity>> fetchFeaturedBooks() async {
     var data = await apiService.get(
-        endPoint: "volumes?q=subject:programming&Filtering=free-ebooks");
+      endPoint: "volumes?q=subject:programming&Filtering=free-ebooks",
+    );
 
-    List<BookEntity> books = getBookList(data);
+    List<BookEntity> books = _getBookList(data);
     saveBooksData(books, kFeaturedBooks);
     return books;
   }
@@ -28,15 +30,30 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   @override
   Future<List<BookEntity>> fetchNewestBooks() async {
     var data = await apiService.get(
-        endPoint:
-            "volumes?q=computer science&Sorting=newest&Filtering=free-ebooks");
+      endPoint: "volumes?q=computer science&Sorting=newest&Filtering=free-ebooks",
+    );
 
-    List<BookEntity> books = getBookList(data);
+    List<BookEntity> books = _getBookList(data);
+    saveBooksData(books, kNewestBooks);
     return books;
   }
 
-  List<BookEntity> getBookList(Map<String, dynamic> data) {
-    List<BookEntity> books = getBookList(data);
+  List<BookEntity> _getBookList(Map<String, dynamic> data) {
+    // Assuming data is a JSON object with a list of books
+    List<BookEntity> books = []; // Parse data into a list of BookEntity objects
+    for (var book in data['items']) {
+      books.add(BookModel.fromJson(book));
+    }
+    return books;
+  }
+
+  @override
+  Future<List<BookEntity>> fetchSimilarBooks({required String category}) async{
+    var data = await apiService.get(
+      endPoint: "volumes?q=subject:programming&Filtering=free-ebooks&Sorting=relevance",
+    );
+
+    List<BookEntity> books = _getBookList(data);
     saveBooksData(books, kNewestBooks);
     return books;
   }

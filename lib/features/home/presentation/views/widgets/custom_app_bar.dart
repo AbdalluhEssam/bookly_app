@@ -6,8 +6,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/assets.dart';
 
-class CustomApBar extends StatelessWidget {
-  const CustomApBar({
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({
     super.key,
   });
 

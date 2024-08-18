@@ -1,10 +1,8 @@
 import 'package:bookly_app/core/utils/styles.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:bookly_app/features/home/presentation/views/widgets/featured_books_list_view_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'best_seller_list_view.dart';
 import 'custom_app_bar.dart';
-import 'featured_list_view.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -18,18 +16,19 @@ class HomeViewBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomApBar(),
-              FeaturedBooksListView(),
+              CustomAppBar(),
+              FeaturedBooksListViewBloc(),
               SizedBox(
                 height: 40,
               ),
               Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: Styles.defaultPadding),
-                  child: Text(
-                    "Newset Books",
-                    style: Styles.textStyle18,
-                  )),
+                padding:
+                    EdgeInsets.symmetric(horizontal: Styles.defaultPadding),
+                child: Text(
+                  "Newest Books",
+                  style: Styles.textStyle18,
+                ),
+              ),
               SizedBox(
                 height: 16,
               ),
@@ -39,7 +38,7 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: Styles.defaultPadding),
-            child: FeaturedBastSellerListView(),
+            child: FeaturedBestSellerListView(),
           ),
         )
       ],
