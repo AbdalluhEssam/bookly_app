@@ -1,20 +1,19 @@
+import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
+import 'package:bookly_app/features/home/domain/use_case/fetch_newest_books_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../data/models/book_model.dart';
-import '../../../domain/repos/home_reop.dart';
-
 part 'newset_books_state.dart';
 
 class NewSetBooksCubit extends Cubit<NewSetBooksState> {
-  NewSetBooksCubit(this.homeRepo) : super(NewSetBooksInitial());
+  NewSetBooksCubit(this.fetchNewestBooksUseCase) : super(NewSetBooksInitial());
 
-  final HomeRepo homeRepo;
+  final FetchNewestBooksUseCase fetchNewestBooksUseCase;
 
   Future<void> fetchNewSetBooks() async {
     emit(NewSetBooksLoading());
-    var result = await homeRepo.fetchNewestBooks();
-    // result.fold(
-    //     (failure) => emit(NewSetBooksFailure(errMessage: failure.errMessage)),
-    //     (books) => emit(NewSetBooksSuccess(books: books)));
+    var result = await fetchNewestBooksUseCase.call();
+    result.fold(
+        (failure) => emit(NewSetBooksFailure(errMessage: failure.errMessage)),
+        (books) => emit(NewSetBooksSuccess(books: books)));
   }
 }

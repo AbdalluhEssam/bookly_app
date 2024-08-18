@@ -7,7 +7,7 @@ final class NewSetBooksInitial extends NewSetBooksState {}
 final class NewSetBooksLoading extends NewSetBooksState {}
 
 final class NewSetBooksSuccess extends NewSetBooksState {
-  final List<BookModel> books;
+  final List<BookEntity> books;
 
   NewSetBooksSuccess({required this.books});
 }
