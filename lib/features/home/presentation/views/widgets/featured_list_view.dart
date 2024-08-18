@@ -30,7 +30,7 @@ class FeaturedBooksListView extends StatelessWidget {
                     },
                     child: CustomBookImage(
                       bookImage:
-                          state.books[index].volumeInfo.imageLinks?.thumbnail ??
+                          state.books[index].image ??
                               "",
                     )),
                 separatorBuilder: (context, index) => const SizedBox(

@@ -20,7 +20,8 @@ class ServerFailure extends Failure {
       case DioExceptionType.sendTimeout:
         return ServerFailure("Send timeout in connection with API server");
       case DioExceptionType.badResponse:
-        return ServerFailure.fromResponse(error.response!.statusCode!, error.response!.data);
+        return ServerFailure.fromResponse(
+            error.response!.statusCode!, error.response!.data);
       case DioExceptionType.badCertificate:
         return ServerFailure("Bad certificate");
       case DioExceptionType.connectionError:
@@ -43,4 +44,12 @@ class ServerFailure extends Failure {
       return ServerFailure("Oops Something went wrong, please try again");
     }
   }
+}
+
+class CacheFailure extends Failure {
+  CacheFailure(super.errMessage);
+}
+
+class NetworkFailure extends Failure {
+  NetworkFailure(super.errMessage);
 }
