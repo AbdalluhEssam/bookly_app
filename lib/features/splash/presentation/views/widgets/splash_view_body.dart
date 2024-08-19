@@ -22,7 +22,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     Future.delayed(kTransparentDuration, () {
       animationController
           .reverse()
-          .then((value) => GoRouter.of(context).push(AppRouter.homeView));
+          .then((value) => GoRouter.of(context).pushReplacement(AppRouter.homeView));
     });
     super.initState();
   }

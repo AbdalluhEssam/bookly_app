@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:bookly_app/features/home/domain/use_case/fetch_featured_books_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,19 +11,26 @@ class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
 
   final FetchFeaturedBooksUseCase featuredBooksUseCase;
 
-  Future<void> fetchFeaturedBooks() async {
-    emit(FeaturedBooksLoading());
-    final result = await featuredBooksUseCase.call();
+  Future<void> fetchFeaturedBooks({int pageNumber = 0}) async {
+    if (pageNumber == 0) {
+      emit(FeaturedBooksLoading());
+    } else {
+      emit(FeaturedBooksPaginationLoading());
+    }
+    final result = await featuredBooksUseCase.call(pageNumber);
     result.fold(
-          (failure) {
-        print('Fetch error: ${failure.errMessage}');
-        emit(FeaturedBooksFailure(errMessage: failure.errMessage));
+      (failure) {
+        if (pageNumber == 0) {
+          log('Fetch error: ${failure.errMessage}');
+          emit(FeaturedBooksFailure(errMessage: failure.errMessage));
+        } else {
+          emit(FeaturedBooksPaginationFailure(errMessage: failure.errMessage));
+        }
       },
-          (books) {
-        print('Fetched books: ${books.length}');
+      (books) {
+        log('Fetched books: ${books.length}');
         emit(FeaturedBooksSuccess(books: books));
       },
     );
   }
-
 }
