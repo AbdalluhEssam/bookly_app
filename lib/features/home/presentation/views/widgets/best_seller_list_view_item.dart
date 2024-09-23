@@ -14,7 +14,10 @@ class BestListViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Padding(
+        padding: const EdgeInsets.symmetric(
+        horizontal: Styles.defaultPadding,vertical: 8),
+    child:GestureDetector(
       onTap: () {
         GoRouter.of(context).push(AppRouter.bookDetailsView, extra: bookModel);
       },
@@ -51,10 +54,10 @@ class BestListViewItem extends StatelessWidget {
                 const SizedBox(
                   height: 8,
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text("Free", style: Styles.textStyle20),
+                    Text("Free", style: Styles.textStyle20),
                     // BookRatting(
                     //   bookModel: bookModel,
                     // ),
@@ -65,7 +68,7 @@ class BestListViewItem extends StatelessWidget {
           )
         ]),
       ),
-    );
+    ));
   }
 }
 

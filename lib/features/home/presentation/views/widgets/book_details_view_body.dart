@@ -4,8 +4,6 @@ import 'package:bookly_app/features/home/presentation/views/widgets/similar_book
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../manger/similar_books_cubit/similar_books_cubit.dart';
 import 'books_details_section.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
